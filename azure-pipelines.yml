@@ -24,7 +24,8 @@ stages:
   - job: MavenPackageAndPublishArtifacts
     displayName: Maven Package and Publish Artifacts
     pool:
-      vmImage: $(vmImageName)
+  #    vmImage: $(vmImageName)
+      name: 'AzureVM'
     
     steps:
     - task: Maven@3
