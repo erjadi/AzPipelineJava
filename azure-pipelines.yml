@@ -32,7 +32,6 @@ stages:
       displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'spring-boot-samples/spring-boot-sample-web-ui/pom.xml'
-        mavenOptions: '-Drevision=2.1.5.RELEASE'
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
