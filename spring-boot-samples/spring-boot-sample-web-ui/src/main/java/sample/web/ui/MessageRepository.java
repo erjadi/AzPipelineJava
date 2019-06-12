@@ -14,19 +14,16 @@
  * limitations under the License.
  */
 
-package sample.tomcat.service;
+package sample.web.ui;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+public interface MessageRepository {
 
-@Component
-public class HelloWorldService {
+	Iterable<Message> findAll();
 
-	@Value("${name:World}")
-	private String name;
+	Message save(Message message);
 
-	public String getHelloMessage() {
-		return "Hello " + this.name;
-	}
+	Message findMessage(Long id);
+
+	void deleteMessage(Long id);
 
 }

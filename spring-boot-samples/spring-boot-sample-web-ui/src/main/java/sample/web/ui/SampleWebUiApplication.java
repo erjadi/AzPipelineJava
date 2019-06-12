@@ -14,42 +14,33 @@
  * limitations under the License.
  */
 
-package sample.tomcat;
-
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+package sample.web.ui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.converter.Converter;
 
 @SpringBootApplication
-public class SampleTomcatApplication {
-
-	private static Log logger = LogFactory.getLog(SampleTomcatApplication.class);
+public class SampleWebUiApplication {
 
 	@Bean
-	protected ServletContextListener listener() {
-		return new ServletContextListener() {
+	public MessageRepository messageRepository() {
+		return new InMemoryMessageRepository();
+	}
 
+	@Bean
+	public Converter<String, Message> messageConverter() {
+		return new Converter<String, Message>() {
 			@Override
-			public void contextInitialized(ServletContextEvent sce) {
-				logger.info("ServletContext initialized");
+			public Message convert(String id) {
+				return messageRepository().findMessage(Long.valueOf(id));
 			}
-
-			@Override
-			public void contextDestroyed(ServletContextEvent sce) {
-				logger.info("ServletContext destroyed");
-			}
-
 		};
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SampleTomcatApplication.class, args);
+		SpringApplication.run(SampleWebUiApplication.class, args);
 	}
 
 }
