@@ -65,7 +65,7 @@ stages:
               buildType: 'current'
 
           - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: hondatest'
+            displayName: 'Azure Web App Deploy: hondaapp'
             inputs:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
